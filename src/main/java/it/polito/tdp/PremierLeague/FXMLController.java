@@ -45,6 +45,15 @@ public class FXMLController {
     @FXML
     void doCreaGrafo(ActionEvent event) {
 
+    	Double x;
+    	try {
+    		x = Double.parseDouble(this.txtGoals.getText());
+    	}catch(NumberFormatException e) {
+    		this.txtResult.appendText("Inserire un numero!\n");
+    		return;
+    	}
+    	this.txtResult.appendText(this.model.creaGrafo(x));
+    	
     }
 
     @FXML
@@ -54,7 +63,9 @@ public class FXMLController {
 
     @FXML
     void doTopPlayer(ActionEvent event) {
-
+    	this.txtResult.clear();
+    	this.txtResult.appendText(this.model.topPlayer());
+    	
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete

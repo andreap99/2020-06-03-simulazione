@@ -1,13 +1,15 @@
 package it.polito.tdp.PremierLeague.model;
 
-public class Player {
+public class Player implements Comparable<Player>{
 	Integer playerID;
 	String name;
+	private Double delta;
 	
 	public Player(Integer playerID, String name) {
 		super();
 		this.playerID = playerID;
 		this.name = name;
+		this.delta = 0.0;
 	}
 	
 	public Integer getPlayerID() {
@@ -21,6 +23,12 @@ public class Player {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public void addDelta(Double delta) {
+		this.delta += delta;
+	}
+	public void resetDelta() {
+		this.delta = 0.0;
 	}
 
 	@Override
@@ -50,7 +58,12 @@ public class Player {
 
 	@Override
 	public String toString() {
-		return playerID + " - " + name;
+		return playerID + " - " + name + " | " + delta;
+	}
+
+	@Override
+	public int compareTo(Player other) {
+		return -this.delta.compareTo(other.delta);
 	}
 	
 	
